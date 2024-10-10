@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ProfileService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateProfileRequest;
 
@@ -16,7 +17,8 @@ class HomeController extends Controller
     }
 
     public function index() {
-        return view('index');
+        $posts = DB::table('user_posts')->get();
+        return view('index', compact('posts'));
     }
 
     public function profile() {
