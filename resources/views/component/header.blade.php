@@ -81,7 +81,8 @@
                                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://avatars.githubusercontent.com/u/831997"
+                                <img class="h-8 w-8 rounded-full"
+                                    src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"
                                     alt="Ahmed Shamim Hasan Shaon" />
                             </button>
                         </div>
@@ -156,7 +157,7 @@
         <!--              <div class="flex-shrink-0">-->
         <!--                <img-->
         <!--                  class="h-10 w-10 rounded-full"-->
-        <!--                  src="https://avatars.githubusercontent.com/u/831997"-->
+        <!--                  src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
         <!--                  alt="Ahmed Shamim Hasan Shaon" />-->
         <!--              </div>-->
         <!--              <div class="ml-3">-->

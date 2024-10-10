@@ -17,7 +17,7 @@
                     <!-- User Avatar -->
                     <div class="flex-shrink-0">
                         <img class="h-10 w-10 rounded-full object-cover"
-                            src="https://avatars.githubusercontent.com/u/831997" alt="Ahmed Shamim" />
+                            src="{{ asset('storage/' . auth()->user()->user_profile_image) }}" alt="Ahmed Shamim" />
                     </div>
                     <!-- /User Avatar -->
 
@@ -130,7 +130,8 @@
                                                 method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" @click.stop="confirmDelete('{{ $post->uuid_post }}')"
+                                                <button type="button"
+                                                    @click.stop="confirmDelete('{{ $post->uuid_post }}')"
                                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                     role="menuitem" tabindex="-1">
                                                     Delete

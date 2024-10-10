@@ -26,6 +26,7 @@ class UpdateProfileRequest extends FormRequest
             'last_name' => 'required|max:40',
             'password' => 'nullable|min:8',
             'bio' => 'nullable|max:240',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

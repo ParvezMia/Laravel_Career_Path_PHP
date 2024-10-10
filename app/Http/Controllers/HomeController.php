@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Services\ProfileService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateProfileRequest;
@@ -34,7 +35,15 @@ class HomeController extends Controller
 
     public function update(UpdateProfileRequest $request)
     {
-        $request = $this->profileService->updateProfile($request->validated(), Auth::user()->email);
+        $imagePath = null;
+
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
+            $fileName = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $imagePath = $file->storeAs('users', $fileName, 'public');
+        }
+
+        $request = $this->profileService->updateProfile($request->validated(), Auth::user()->email, $imagePath);
         if ($request) {
             notify()->success('Profile updated successfully!');
         } else {

@@ -193,7 +193,7 @@
         <!--            <div class="flex-shrink-0">-->
         <!--              <img-->
         <!--                class="h-10 w-10 rounded-full object-cover"-->
-        <!--                src="https://avatars.githubusercontent.com/u/831997"-->
+        <!--                src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
         <!--                alt="Ahmed Shamim" />-->
         <!--            </div>-->
         <!--            &lt;!&ndash; /User Avatar &ndash;&gt;-->
@@ -310,7 +310,7 @@
         <!--              <div class="flex-shrink-0">-->
         <!--                <img-->
         <!--                  class="h-10 w-10 rounded-full object-cover"-->
-        <!--                  src="https://avatars.githubusercontent.com/u/831997"-->
+        <!--                  src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
         <!--                  alt="Tony Stark" />-->
         <!--              </div>-->
         <!--              &lt;!&ndash; /User Avatar &ndash;&gt;-->
