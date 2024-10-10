@@ -110,7 +110,9 @@
                     <!--              &lt;!&ndash; /Emoji Button &ndash;&gt;-->
                     <!--            </div>-->
 
-                    <div>
+                    <div class="flex gap-6">
+                        <a href="{{ route('home') }}"
+                            class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">Back</a>
                         <!-- Post Button -->
                         <button type="submit"
                             class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">

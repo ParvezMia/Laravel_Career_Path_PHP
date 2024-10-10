@@ -55,6 +55,16 @@ class PostController extends Controller
 
     }
 
+    public function show(Request $request, $id){
+        $post = $this->postService->getPostById($id);
+        if (!$post) {
+            notify()->error('Post not found!');
+            return redirect()->route('home');
+        }
+
+        return view('post-show', compact('post'));
+    }
+
     public function delete(Request $request, $id){
         $post = $this->postService->getPostById($id);
         if (!$post) {
