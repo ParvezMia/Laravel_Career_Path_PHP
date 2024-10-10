@@ -13,6 +13,13 @@
                 <header>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
+                            <div class="flex-shrink-0">
+                                <img class="h-10 w-10 rounded-full object-cover"
+                                    src="{{ $post->user->user_profile_image
+                                        ? asset('storage/' . $post->user->user_profile_image)
+                                        : Avatar::create($post->user->first_name)->toBase64() }}"
+                                    alt="{{ $post->user->first_name }}">
+                            </div>
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                 <span class="font-semibold line-clamp-1">

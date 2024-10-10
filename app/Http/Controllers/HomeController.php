@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Services\ProfileService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateProfileRequest;
@@ -21,6 +22,12 @@ class HomeController extends Controller
     public function index() {
         $posts = $this->homeService->getPosts();
         return view('index', compact('posts'));
+    }
+
+    public function search(Request $request) {
+        $search = true;
+        $posts = $this->homeService->searchPosts($request->search);
+        return view('index', compact('posts', 'search'));
     }
 
     public function profile() {

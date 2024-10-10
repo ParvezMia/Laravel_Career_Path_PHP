@@ -14,4 +14,20 @@ class HomeService
             ->orderBy('user_posts.created_at', 'desc')
             ->get();
     }
+
+    public function searchPosts($search)
+    {
+        return Post::with('user')
+        ->whereHas('user', function ($query) use ($search) {
+            $query->where('first_name', 'like', '%' . $search . '%')
+                  ->orWhere('last_name', 'like', '%' . $search . '%')
+                  ->orWhere('username', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%');
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+
+
+    }
 }

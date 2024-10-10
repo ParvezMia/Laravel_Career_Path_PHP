@@ -27,7 +27,7 @@
         <!-- Navigation -->
         <nav x-data="{ mobileMenuOpen: false, userMenuOpen: false }" class="bg-white shadow">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 justify-between">
+                <div class="flex h-16 justify-between items-center">
                     <div class="flex">
                         <div class="flex flex-shrink-0 items-center">
                             <a href="/">
@@ -53,7 +53,38 @@
                         <!--                >-->
                         <!--              </div>-->
                     </div>
-                    <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
+
+                    <form action="{{ route('search') }}" method="get" class="flex items-center m-0 w-lg"
+                        style="width: 400px" x-data="{ search: '' }">
+                        <label for="default-search"
+                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="search" id="default-search"
+                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                name="search" placeholder="Search name, emails or username..." />
+                            <button type="submit"
+                                class="text-white absolute end-8 bottom-2.5 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-gray-800 dark:focus:ring-blue-800">Search</button>
+                            <a href="/"
+                                class="text-white absolute -end-10 bottom-2.5 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-gray-800 dark:focus:ring-blue-800">Clear</a>
+                        </div>
+                        {{-- <input type="text" placeholder="Search..." name="search" x-model="search"
+                            class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none">
+
+                        <!-- Clear Button -->
+                        <button type="button" @click="search = ''"
+                            class="ml-2 text-gray-200 hover:text-gray-700 focus:outline-none bg-blue-500 py-1 px-3 rounded-xl -ml-10">
+                            Clear
+                        </button> --}}
+                    </form>
+
+                    <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center flex ">
                         <!-- This Button Should Be Hidden on Mobile Devices -->
                         <!--              <button-->
                         <!--                type="button"-->

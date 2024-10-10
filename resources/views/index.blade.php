@@ -84,6 +84,33 @@
 
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
+            @if ($posts->isEmpty() && $search)
+                <div class="mt-10 flex items-center p-4 text-lg text-gray-900 rounded-lg bg-gray-50 dark:bg-gray-600 dark:text-gray-200 tw-mt-10 tw-flex tw-items-center tw-p-4 tw-text-lg tw-text-gray-900 tw-rounded-lg tw-bg-gray-50 dark:tw-bg-gray-600 dark:tw-text-gray-200"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 tw-flex-shrink-0 tw-inline tw-w-4 tw-h-4 tw-me-3"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    {{-- <span class="sr-only">Info</span> --}}
+                    <div>
+                        Your searched user didn't added any post yet!.
+                    </div>
+                </div>
+            @elseif ($posts->isEmpty())
+                <div class="mt-10 flex items-center p-4 text-lg text-gray-900 rounded-lg bg-gray-50 dark:bg-gray-600 dark:text-gray-200 tw-mt-10 tw-flex tw-items-center tw-p-4 tw-text-lg tw-text-gray-900 tw-rounded-lg tw-bg-gray-50 dark:tw-bg-gray-600 dark:tw-text-gray-200"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 tw-flex-shrink-0 tw-inline tw-w-4 tw-h-4 tw-me-3"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    {{-- <span class="sr-only">Info</span> --}}
+                    <div>
+                        No Post Yet! Please Add One.
+                    </div>
+                </div>
+            @endif
             @foreach ($posts as $post)
                 <!-- Barta Card -->
                 <article
@@ -92,6 +119,13 @@
                     <header>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    <img class="h-10 w-10 rounded-full object-cover"
+                                        src="{{ $post->user->user_profile_image
+                                            ? asset('storage/' . $post->user->user_profile_image)
+                                            : Avatar::create($post->user->first_name)->toBase64() }}"
+                                        alt="{{ $post->user->first_name }}">
+                                </div>
                                 <!-- User Info -->
                                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                     <span class="font-semibold line-clamp-1">

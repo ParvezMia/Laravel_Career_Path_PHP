@@ -18,6 +18,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->na
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/',  [HomeController::class, 'index'])->name('home');
+    Route::get('/search',  [HomeController::class, 'search'])->name('search');
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [HomeController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/edit', [HomeController::class, 'update'])->name('profile.update');
