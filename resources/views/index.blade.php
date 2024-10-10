@@ -17,7 +17,10 @@
                     <!-- User Avatar -->
                     <div class="flex-shrink-0">
                         <img class="h-10 w-10 rounded-full object-cover"
-                            src="{{ asset('storage/' . auth()->user()->user_profile_image) }}" alt="Ahmed Shamim" />
+                            src="{{ auth()->user()->user_profile_image
+                                ? asset('storage/' . auth()->user()->user_profile_image)
+                                : Avatar::create(auth()->user()->first_name)->toBase64() }}"
+                            alt="Ahmed Shamim" />
                     </div>
                     <!-- /User Avatar -->
 

@@ -107,7 +107,9 @@
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user menu</span>
                                     <img class="h-8 w-8 rounded-full"
-                                        src="{{ asset('storage/' . auth()->user()->user_profile_image) }}" />
+                                        src="{{ auth()->user()->user_profile_image
+                                            ? asset('storage/' . auth()->user()->user_profile_image)
+                                            : Avatar::create(auth()->user()->first_name)->toBase64() }}" />
                                 </button>
                             </div>
 
@@ -181,7 +183,9 @@
             <!--              <div class="flex-shrink-0">-->
             <!--                <img-->
             <!--                  class="h-10 w-10 rounded-full"-->
-            <!--                  src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
+            <!--                  src="{{ auth()->user()->user_profile_image
+                ? asset('storage/' . auth()->user()->user_profile_image)
+                : Avatar::create(auth()->user()->first_name)->toBase64() }}"-->
             <!--                  alt="Ahmed Shamim Hasan Shaon" />-->
             <!--              </div>-->
             <!--              <div class="ml-3">-->

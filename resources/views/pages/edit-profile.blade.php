@@ -19,7 +19,9 @@
                     <div class="mt-10 border-b border-gray-900/10 pb-12">
                         <div class="col-span-full mt-10 pb-10">
                             <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
-                            <div x-data="{ imagePreview: '{{ asset('storage/' . auth()->user()->user_profile_image) }}' }" class="mt-2 flex items-center gap-x-3">
+                            <div x-data="{ imagePreview: '{{ auth()->user()->user_profile_image
+                                ? asset('storage/' . auth()->user()->user_profile_image)
+                                : Avatar::create(auth()->user()->first_name)->toBase64() }}' }" class="mt-2 flex items-center gap-x-3">
                                 <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"
                                     @change="
                                         const file = $event.target.files[0];

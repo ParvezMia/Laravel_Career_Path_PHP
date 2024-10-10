@@ -11,7 +11,9 @@
                 <!--          <div class="relative">-->
                 <!--            <img-->
                 <!--              class="w-32 h-32 rounded-full border-2 border-gray-800"-->
-                <!--              src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
+                <!--              src="{{ auth()->user()->user_profile_image
+                    ? asset('storage/' . auth()->user()->user_profile_image)
+                    : Avatar::create(auth()->user()->first_name)->toBase64() }}"-->
                 <!--              alt="Ahmed Shamim" />-->
                 <!--            <span-->
                 <!--              class="bottom-2 right-4 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>-->
@@ -77,7 +79,9 @@
         <!--            <div class="flex-shrink-0">-->
         <!--              <img-->
         <!--                class="h-10 w-10 rounded-full object-cover"-->
-        <!--                src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
+        <!--                src="{{ auth()->user()->user_profile_image
+            ? asset('storage/' . auth()->user()->user_profile_image)
+            : Avatar::create(auth()->user()->first_name)->toBase64() }}"-->
         <!--                alt="Ahmed Shamim" />-->
         <!--            </div>-->
         <!--            &lt;!&ndash; /User Avatar &ndash;&gt;-->
@@ -194,7 +198,9 @@
         <!--              <div class="flex-shrink-0">-->
         <!--                <img-->
         <!--                  class="h-10 w-10 rounded-full object-cover"-->
-        <!--                  src="{{ asset('storage/' . auth()->user()->user_profile_image) }}"-->
+        <!--                  src="{{ auth()->user()->user_profile_image
+            ? asset('storage/' . auth()->user()->user_profile_image)
+            : Avatar::create(auth()->user()->first_name)->toBase64() }}"-->
         <!--                  alt="Tony Stark" />-->
         <!--              </div>-->
         <!--              &lt;!&ndash; /User Avatar &ndash;&gt;-->
