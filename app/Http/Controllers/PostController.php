@@ -55,4 +55,18 @@ class PostController extends Controller
 
     }
 
+    public function delete(Request $request, $id){
+        $post = $this->postService->getPostById($id);
+        if (!$post) {
+            notify()->error('Post not found!');
+            return redirect()->route('home');
+        }
+
+        $this->postService->deletePost($id);
+
+        notify()->success('Post has been deleted successfully!');
+
+        return redirect()->route('home');
+    }
+
 }

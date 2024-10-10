@@ -179,9 +179,17 @@
                                             <a href="{{ route('post.edit', ['id' => $post->uuid_post]) }}"
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                 role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
-                                            <a href="#"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                            <form id="delete-form-{{ $post->uuid_post }}"
+                                                action="{{ route('post.delete', ['id' => $post->uuid_post]) }}"
+                                                method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" onclick="confirmDelete('{{ $post->uuid_post }}')"
+                                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                    role="menuitem" tabindex="-1">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
 
@@ -211,3 +219,10 @@
         <!-- /Newsfeed -->
     </main>
 @endsection
+<script>
+    function confirmDelete(postId) {
+        if (confirm('Are you sure you want to delete this post?')) {
+            document.getElementById('delete-form-' + postId).submit();
+        }
+    }
+</script>

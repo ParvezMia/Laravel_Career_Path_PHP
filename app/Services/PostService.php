@@ -31,4 +31,8 @@ class PostService
         return DB::table('user_posts')->where('uuid_post', $id)->update($data);
     }
 
+    public function deletePost($id){
+        return DB::table('user_posts')->where('uuid_post', $id)->delete();
+    }
+
 }
