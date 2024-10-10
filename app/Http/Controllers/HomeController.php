@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Services\ProfileService;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateProfileRequest;
 
 class HomeController extends Controller
 {
     private $profileService;
+    protected $homeService;
 
-    public function __construct(ProfileService $profileService)
+    public function __construct(ProfileService $profileService, \App\Services\HomeService $homeService)
     {
         $this->profileService = $profileService;
+        $this->homeService = $homeService;
     }
 
     public function index() {
-        $posts = DB::table('user_posts')->get();
+        $posts = $this->homeService->getPosts();
         return view('index', compact('posts'));
     }
 
