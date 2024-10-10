@@ -15,10 +15,10 @@
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                 <span class="font-semibold line-clamp-1">
-                                    {{ $post->first_name }} {{ $post->last_name }}
+                                    {{ $post->user->first_name }} {{ $post->user->last_name }}
                                 </span>
                                 <span class="text-sm text-gray-500 line-clamp-1">
-                                    {{ '@' . $post->username }}
+                                    {{ '@' . $post->user->username }}
                                 </span>
                             </div>
                             <!-- /User Info -->
@@ -79,7 +79,7 @@
                         <span class="">
                             {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
                         </span>
-                        @if ($post->updated_at)
+                        @if ($post->updated_at && $post->updated_at != $post->created_at)
                             <span class="">•</span>
                             <span class="text-xs text-gray-400">(Edited
                                 {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }})</span>

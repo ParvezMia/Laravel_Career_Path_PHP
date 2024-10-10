@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -9,37 +10,30 @@ class PostService
 {
     public function getPostById($id)
     {
-        return DB::table('user_posts')
-                ->join('users', 'user_posts.user_post_user_uuid', '=', 'users.uuid')
-                ->select('user_posts.*', 'users.first_name', 'users.last_name', 'users.username')
+        return Post::with(['user'])
                 ->where('uuid_post', $id)->first();
     }
     public function storePost($validateData)
     {
         $data = [
-            'uuid_post' => Str::uuid()->toString(),
             'user_post_description' => $validateData['barta'],
             'user_post_user_uuid' => Auth::user()->uuid,
-            'created_by' => Auth::user()->uuid,
-            'created_at' => now()
         ];
 
-        return DB::table('user_posts')->insert($data);
+        return Post::create($data);;
     }
 
     public function updatePost($validateData, $id)
     {
         $data = [
             'user_post_description' => $validateData['barta'],
-            'updated_by' => Auth::user()->uuid,
-            'updated_at' => now()
         ];
 
-        return DB::table('user_posts')->where('uuid_post', $id)->update($data);
+        return Post::where('uuid_post', $id)->update($data);
     }
 
     public function deletePost($id){
-        return DB::table('user_posts')->where('uuid_post', $id)->delete();
+        return Post::where('uuid_post', $id)->delete();
     }
 
 }

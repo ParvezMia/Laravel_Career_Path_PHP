@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileService
@@ -21,8 +21,6 @@ class ProfileService
             $updateData['password'] = Hash::make($validatedData['password']);
         }
 
-        return DB::table('users')
-            ->where('email', $userEmail)
-            ->update($updateData) > 0;
+        return User::where('email', $userEmail)->update($updateData) > 0;
     }
 }

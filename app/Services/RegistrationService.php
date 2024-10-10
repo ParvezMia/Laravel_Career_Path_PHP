@@ -2,8 +2,7 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\app\Repositories\UserRepository;
 
@@ -30,10 +29,7 @@ class RegistrationService
 
     function storeData(array $data)
     {
-        $uuid = Str::uuid();
-
-        $storedData = DB::table('users')->insert([
-            'uuid' => $uuid,
+        return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'username' => $data['username'],
@@ -41,6 +37,5 @@ class RegistrationService
             'password' => Hash::make($data['password']),
             'created_by' => $data['email'],
         ]);
-        return $storedData;
     }
 }

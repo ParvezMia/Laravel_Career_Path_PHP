@@ -2,12 +2,12 @@
 
 namespace App\app\Repositories;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserRepository
 {
     public function findByEmail(string $email)
     {
-        return DB::table('users')->where('email', $email)->first();
+        return User::where('email', $email)->first();
     }
 }
