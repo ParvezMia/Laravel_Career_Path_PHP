@@ -6,6 +6,7 @@
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
             <!-- Barta Card -->
+            <!-- Barta Card -->
             <article
                 class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 hover:bg-gray-50 transition duration-300">
                 <!-- Barta Card Top -->
@@ -65,29 +66,38 @@
                         @endif
                     </div>
                 </header>
-
                 <a href="{{ route('post.show', ['id' => $post->uuid_post]) }}" class="block">
-                    <!-- Content -->
-                    <div class="py-4 text-gray-700 font-normal">
-                        <p>
-                            {{ $post->user_post_description }}
-                        </p>
-                    </div>
+                    @if ($post->post_image)
+                        <div class="py-4 text-gray-700 font-normal space-y-2">
+                            <img src="{{ asset('storage/' . $post->post_image) }}"
+                                class="min-h-auto w-full rounded-lg object-cover max-h-64 md:max-h-72" alt="">
+                            <p>{{ $post->user_post_description }}</p>
+                        </div>
+                    @else
+                        <!-- Content -->
+                        <div class="py-4 text-gray-700 font-normal">
+                            <p>
+                                {{ $post->user_post_description }}
+                            </p>
+                        </div>
 
-                    <!-- Date Created & View Stat -->
-                    <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-                        <span class="">
-                            {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
-                        </span>
-                        @if ($post->updated_at && $post->updated_at != $post->created_at)
+                        <!-- Date Created & View Stat -->
+                        <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
+                            <span class="">
+                                {{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
+                            </span>
+                            @if ($post->updated_at && $post->updated_at != $post->created_at)
+                                <span class="">•</span>
+                                <span class="text-xs text-gray-400">(Edited
+                                    {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }})</span>
+                            @endif
                             <span class="">•</span>
-                            <span class="text-xs text-gray-400">(Edited
-                                {{ \Carbon\Carbon::parse($post->updated_at)->diffForHumans() }})</span>
-                        @endif
-                        <span class="">•</span>
-                        <span>4,450 views</span>
-                    </div>
+                            <span>4,450 views</span>
+                        </div>
+                    @endif
+                </a>
             </article>
+            <!-- /Barta Card -->
             <div class="flex gap-6 justify-end">
                 <a href="{{ route('home') }}"
                     class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">Back</a>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Services\PostService;
 use App\Http\Requests\PostRequestValidation;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -17,7 +18,15 @@ class PostController extends Controller
 
     public function store(PostRequestValidation $request){
 
-        $this->postService->storePost($request->validated());
+        $imagePath = null;
+
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $fileName = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $imagePath = $file->storeAs('post_images', $fileName, 'public');
+        }
+
+        $this->postService->storePost($request->validated(), $imagePath);
 
         if ($request) {
             notify()->success('Post has been created successfully!');
@@ -44,7 +53,15 @@ class PostController extends Controller
             return redirect()->route('home');
         }
 
-        $this->postService->updatePost($request->validated(), $id);
+        $imagePath = $post->post_image;
+
+        if ($request->file('picture')) {
+            $file = $request->file('picture');
+            $fileName = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $imagePath = $file->storeAs('post_images', $fileName, 'public');
+        }
+
+        $this->postService->updatePost($request->validated(), $id, $imagePath);
 
         if ($request) {
             notify()->success('Post has been updated successfully!');
