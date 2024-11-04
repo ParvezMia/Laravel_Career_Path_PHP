@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\API\BaseController;
 
-class LoginController extends BaseController
+class LoginApiController extends BaseController
 {
     private $loginService;
 

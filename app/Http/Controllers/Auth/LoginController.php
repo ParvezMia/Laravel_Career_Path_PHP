@@ -31,6 +31,6 @@ class LoginController extends Controller
             notify()->error($result['message']);
         }
 
-        return redirect()->route($result['redirect']);
+        return redirect()->route('home');
     }
 }

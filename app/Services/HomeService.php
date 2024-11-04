@@ -26,8 +26,5 @@ class HomeService
         })
         ->orderBy('created_at', 'desc')
         ->get();
-
-
-
     }
 }

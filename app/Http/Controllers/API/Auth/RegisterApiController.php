@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\RegistrationService;
 use App\Http\Requests\RegistrationRequest;
 
-class RegisterController extends Controller
+class RegisterApiController extends Controller
 {
     protected $registrationService;
 

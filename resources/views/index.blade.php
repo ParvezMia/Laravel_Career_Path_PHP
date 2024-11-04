@@ -84,7 +84,7 @@
 
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
-            @if ($posts->isEmpty() && $search)
+            @if ($posts->isEmpty() && isset($search) && $search)
                 <div class="mt-10 flex items-center p-4 text-lg text-gray-900 rounded-lg bg-gray-50 dark:bg-gray-600 dark:text-gray-200 tw-mt-10 tw-flex tw-items-center tw-p-4 tw-text-lg tw-text-gray-900 tw-rounded-lg tw-bg-gray-50 dark:tw-bg-gray-600 dark:tw-text-gray-200"
                     role="alert">
                     <svg class="flex-shrink-0 inline w-4 h-4 me-3 tw-flex-shrink-0 tw-inline tw-w-4 tw-h-4 tw-me-3"
