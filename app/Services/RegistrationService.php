@@ -19,12 +19,22 @@ class RegistrationService
     {
         $username = $this->userRepository->findByEmail($credentials['username']);
         if ($username) {
-            notify()->error('This username is already taken!');
-            return redirect()->route('register')->withInput($credentials);
+            return [
+                'success' => false,
+                'message' => 'Username already exists.',
+            ];
         }
-
         $storedData = $this->storeData($credentials);
-        return response()->json($storedData, 200);
+        if ($storedData) {
+            return [
+                'success' => true,
+                'message' => 'User registered successfully.',
+            ];
+        }
+        return [
+            'success'=> false,
+            'message' => 'User registration failed.',
+            ];
     }
 
     function storeData(array $data)
